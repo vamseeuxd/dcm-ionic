@@ -1,0 +1,36 @@
+<ion-content no-margin no-padding>
+    <ion-card class="profile-nav-bar-card" color="primary" no-margin no-padding>
+        <ion-card-content no-margin no-padding>
+            <ion-icon class="profile-back-button" name="arrow-round-back"></ion-icon>
+            <ion-avatar class="profile-avatar"><img src="./assets/images/images.jpg"></ion-avatar>
+            <h2 class="profile-name">Pawan Kalyan</h2>
+            <ion-segment [(ngModel)]="profileSegment" class="profile-segment">
+                <ion-segment-button value="ACCOUNT">
+                    ACCOUNT
+                </ion-segment-button>
+                <ion-segment-button value="GENERAL">
+                    GENERAL
+                </ion-segment-button>
+                <ion-segment-button value="EXTRAS">
+                    EXTRAS
+                </ion-segment-button>
+            </ion-segment>
+        </ion-card-content>
+    </ion-card>
+    <ion-list *ngIf="profileSegment==='ACCOUNT'">
+        <ion-item no-margin no-padding>
+            <ion-icon color="medium" item-start name="settings" padding-end padding-start></ion-icon>
+            <h6>Account Details</h6>
+        </ion-item>
+
+        <ion-item no-margin no-padding>
+            <ion-icon color="medium" item-start name="notifications" padding-end padding-start></ion-icon>
+            <h6>Notifications</h6>
+        </ion-item>
+
+        <ion-item no-margin no-padding>
+            <ion-icon color="medium" item-start name="log-out" padding-end padding-start></ion-icon>
+            <h6>Sign Out</h6>
+        </ion-item>
+    </ion-list>
+</ion-content>

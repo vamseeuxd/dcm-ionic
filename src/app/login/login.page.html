@@ -1,0 +1,40 @@
+<ion-content class="login-page" color="primary" no-margin no-padding scrollY="false">
+    <div class="logo-container">
+        <img class="logo" src="./assets/images/dcm-lab-logo-transparent.png">
+        <ion-item *ngIf="isCreateAccount" color="primary">
+            <ion-label position="floating">Name</ion-label>
+            <ion-input type="email"></ion-input>
+        </ion-item>
+        <ion-item color="primary">
+            <ion-label position="floating">Email</ion-label>
+            <ion-input type="email"></ion-input>
+        </ion-item>
+        <ion-item color="primary">
+            <ion-label position="floating">Password</ion-label>
+            <ion-input type="password"></ion-input>
+        </ion-item>
+        <ion-button *ngIf="isCreateAccount" color="primary" expand="full">Create Free Account</ion-button>
+        <ion-button *ngIf="!isCreateAccount" color="primary" expand="full">Sign In</ion-button>
+        <ion-button *ngIf="!isCreateAccount" color="primary" expand="full">Forgot your password?</ion-button>
+        <ion-grid>
+            <ion-row>
+                <ion-col>
+                    <ion-button class="face-book-button" color="primary" expand="full">
+                        <ion-icon name="logo-facebook"></ion-icon>
+                    </ion-button>
+                </ion-col>
+                <ion-col>
+                    <ion-button class="g-mail-button" color="danger" expand="full">
+                        <ion-icon name="logo-google"></ion-icon>
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+        </ion-grid>
+        <ion-button (click)="isCreateAccount=true" *ngIf="!isCreateAccount" color="primary" expand="full">Don't have an
+            account? Create Account
+        </ion-button>
+        <ion-button (click)="isCreateAccount=false" *ngIf="isCreateAccount" color="primary" expand="full">Have an
+            account already? Sign In
+        </ion-button>
+    </div>
+</ion-content>

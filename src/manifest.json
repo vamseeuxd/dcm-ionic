@@ -1,9 +1,9 @@
 {
-  "name": "app",
-  "short_name": "app",
-  "theme_color": "#1976d2",
-  "background_color": "#fafafa",
-  "display": "standalone",
+  "name": "DCM",
+  "short_name": "diagnostic center management",
+  "theme_color": "#3171e0",
+  "background_color": "#3171e0",
+  "display": "fullscreen",
   "scope": "/",
   "start_url": "/",
   "icons": [

@@ -1,0 +1,21 @@
+.login-page {
+  .logo-container {
+    text-align: center;
+    margin-top: 5vh;
+
+    .logo {
+      width: 50%;
+      text-align: center;
+    }
+  }
+
+  .g-mail-button {
+    border: 1px solid #a03939;
+    background-color: #f04141;
+  }
+
+  .face-book-button {
+    border: 1px solid #2f65c5;
+    background-color: #3880ff;
+  }
+}
