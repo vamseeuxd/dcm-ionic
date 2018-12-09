@@ -1,40 +1,157 @@
 <ion-content class="login-page" color="primary" no-margin no-padding scrollY="false">
-    <div class="logo-container">
-        <img class="logo" src="./assets/images/dcm-lab-logo-transparent.png">
-        <ion-item *ngIf="isCreateAccount" color="primary">
-            <ion-label position="floating">Name</ion-label>
-            <ion-input type="email"></ion-input>
-        </ion-item>
-        <ion-item color="primary">
-            <ion-label position="floating">Email</ion-label>
-            <ion-input type="email"></ion-input>
-        </ion-item>
-        <ion-item color="primary">
-            <ion-label position="floating">Password</ion-label>
-            <ion-input type="password"></ion-input>
-        </ion-item>
-        <ion-button *ngIf="isCreateAccount" color="primary" expand="full">Create Free Account</ion-button>
-        <ion-button *ngIf="!isCreateAccount" color="primary" expand="full">Sign In</ion-button>
-        <ion-button *ngIf="!isCreateAccount" color="primary" expand="full">Forgot your password?</ion-button>
+    <!--<div style="position: absolute;top: 10px;left: 10px;">
+        <pre>{{loginForm.valid|json}}</pre>
+        <pre>{{loginForm.value|json}}</pre>
+    </div>-->
+    <form #loginForm="ngForm" name="loginForm">
         <ion-grid>
+
+            <!--
+                Logo
+            -->
+            <ion-row>
+                <ion-col text-center>
+                    <img class="logo" src="./assets/images/dcm-lab-logo-transparent.png">
+                </ion-col>
+            </ion-row>
+            <!--**********************-->
+
+            <!--
+                Name
+            -->
+            <ion-row *ngIf="isCreateAccount">
+                <ion-col>
+                    <ion-item color="primary">
+                        <ion-label position="floating">Name *</ion-label>
+                        <ion-input [(ngModel)]="loginDetails.name"
+                                   name="name"
+                                   required type="text"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <!--**********************-->
+
+            <!--
+                Email
+            -->
             <ion-row>
                 <ion-col>
-                    <ion-button class="face-book-button" color="primary" expand="full">
-                        <ion-icon name="logo-facebook"></ion-icon>
-                    </ion-button>
+                    <ion-item color="primary">
+                        <ion-label position="floating">Email</ion-label>
+                        <ion-input [(ngModel)]="loginDetails.email"
+                                   email
+                                   name="email"
+                                   required type="email"></ion-input>
+                    </ion-item>
                 </ion-col>
+            </ion-row>
+            <!--**********************-->
+
+            <!--
+                Password
+            -->
+            <ion-row>
                 <ion-col>
-                    <ion-button class="g-mail-button" color="danger" expand="full">
-                        <ion-icon name="logo-google"></ion-icon>
+                    <ion-item color="primary">
+                        <ion-label position="floating">Password</ion-label>
+                        <ion-input [(ngModel)]="loginDetails.password"
+                                   name="password"
+                                   required
+                                   type="password"></ion-input>
+                    </ion-item>
+                </ion-col>
+            </ion-row>
+            <!--**********************-->
+
+            <!--
+                Create Free Account
+            -->
+            <ion-row *ngIf="isCreateAccount">
+                <ion-col>
+                    <ion-button [disabled]="loginForm.invalid"
+                                color="light"
+                                expand="full">Create Free Account
                     </ion-button>
                 </ion-col>
             </ion-row>
+            <!--**********************-->
+
+            <!--
+                Sign In
+            -->
+            <ion-row *ngIf="!isCreateAccount">
+                <ion-col>
+                    <ion-button [disabled]="loginForm.invalid"
+                                color="light"
+                                expand="full">Sign In
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <!--**********************-->
+
+            <!--
+                Forgot your password
+            -->
+            <ion-row *ngIf="!isCreateAccount">
+                <ion-col>
+                    <ion-button color="light"
+                                expand="full">Forgot your password?
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <!--**********************-->
+
+            <ion-row>
+                <!--
+                    Facebook Button
+                -->
+                <ion-col>
+                    <ion-button color="light" expand="full">
+                        <ion-icon color="primary"
+                                  name="logo-facebook"></ion-icon>
+                    </ion-button>
+                </ion-col>
+                <!--**********************-->
+
+                <!--
+                    Google Button
+                -->
+                <ion-col>
+                    <ion-button color="light" expand="full">
+                        <ion-icon color="danger"
+                                  name="logo-google"></ion-icon>
+                    </ion-button>
+                </ion-col>
+                <!--**********************-->
+            </ion-row>
+
+            <!--
+                Don't have an account? Create Account
+            -->
+            <ion-row *ngIf="!isCreateAccount">
+                <ion-col>
+                    <ion-button (click)="doNotHaveAnAccountCreateAccount()"
+                                color="light"
+                                expand="full">
+                        Don't have an account? Create Account
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <!--**********************-->
+
+            <!--
+                Have an account already? Sign In
+            -->
+            <ion-row *ngIf="isCreateAccount">
+                <ion-col>
+                    <ion-button (click)="haveAnAccountAlreadySignIn()"
+                                color="light"
+                                expand="full">
+                        Have an account already? Sign In
+                    </ion-button>
+                </ion-col>
+            </ion-row>
+            <!--**********************-->
         </ion-grid>
-        <ion-button (click)="isCreateAccount=true" *ngIf="!isCreateAccount" color="primary" expand="full">Don't have an
-            account? Create Account
-        </ion-button>
-        <ion-button (click)="isCreateAccount=false" *ngIf="isCreateAccount" color="primary" expand="full">Have an
-            account already? Sign In
-        </ion-button>
-    </div>
+    </form>
 </ion-content>
