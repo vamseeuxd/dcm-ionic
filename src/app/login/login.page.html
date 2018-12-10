@@ -1,8 +1,8 @@
 <ion-content class="login-page" color="primary" no-margin no-padding scrollY="false">
-    <!--<div style="position: absolute;top: 10px;left: 10px;">
-        <pre>{{loginForm.valid|json}}</pre>
-        <pre>{{loginForm.value|json}}</pre>
-    </div>-->
+    <div *ngIf="userDetails" style="position: absolute;top: 10px;left: 10px;">
+        <!--<pre>{{loginForm.valid|json}}</pre>-->
+        <pre>{{userDetails.providerData|json}}</pre>
+    </div>
     <form #loginForm="ngForm" name="loginForm">
         <ion-grid>
 
@@ -70,6 +70,7 @@
                 <ion-col>
                     <ion-button [disabled]="loginForm.invalid"
                                 color="light"
+                                (click)="createFreeAccount()"
                                 expand="full">Create Free Account
                     </ion-button>
                 </ion-col>
@@ -83,6 +84,7 @@
                 <ion-col>
                     <ion-button [disabled]="loginForm.invalid"
                                 color="light"
+                                (click)="singInWithEmailAndPassword()"
                                 expand="full">Sign In
                     </ion-button>
                 </ion-col>
@@ -101,29 +103,19 @@
             </ion-row>
             <!--**********************-->
 
+            <!--
+                Google Button
+            -->
             <ion-row>
-                <!--
-                    Facebook Button
-                -->
                 <ion-col>
-                    <ion-button color="light" expand="full">
-                        <ion-icon color="primary"
-                                  name="logo-facebook"></ion-icon>
+                    <ion-button (click)="signInWithGoogle()"
+                                color="danger"
+                                expand="full">
+                        <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Login with Google
                     </ion-button>
                 </ion-col>
-                <!--**********************-->
-
-                <!--
-                    Google Button
-                -->
-                <ion-col>
-                    <ion-button color="light" expand="full">
-                        <ion-icon color="danger"
-                                  name="logo-google"></ion-icon>
-                    </ion-button>
-                </ion-col>
-                <!--**********************-->
             </ion-row>
+            <!--**********************-->
 
             <!--
                 Don't have an account? Create Account
