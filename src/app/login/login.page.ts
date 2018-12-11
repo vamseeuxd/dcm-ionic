@@ -185,4 +185,17 @@ export class LoginPage implements OnInit {
                 this.showErrorAlert(error.message);
             });
     }
+
+    forgotYourPassword() {
+        this.afAuth.auth.sendPasswordResetEmail(this.loginDetails.email).then(
+            success => {
+                console.log(success);
+                this.showErrorAlert('Sent Password Reset Email to your registred Email Address');
+            },
+            error => {
+                console.log(error);
+                this.showErrorAlert(error.message);
+            }
+        );
+    }
 }

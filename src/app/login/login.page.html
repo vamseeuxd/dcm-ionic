@@ -97,6 +97,8 @@
             <ion-row *ngIf="!isCreateAccount">
                 <ion-col>
                     <ion-button color="light"
+                                (click)="forgotYourPassword()"
+                                [disabled]="loginForm['controls']['email']?.invalid"
                                 expand="full">Forgot your password?
                     </ion-button>
                 </ion-col>
