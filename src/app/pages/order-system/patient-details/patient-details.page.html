@@ -1,0 +1,22 @@
+<ion-header>
+    <ion-toolbar>
+        <ion-title>Patient Selection</ion-title>
+    </ion-toolbar>
+    <ion-toolbar>
+        <ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content padding>
+
+    <ion-list>
+        <ion-item *ngFor="let item of items">
+            <ion-label>
+                <h2>{{ item }}</h2>
+                <h3>I'm a big deal</h3>
+                <p>Listen, I've had a pretty messed up day...</p>
+            </ion-label>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
