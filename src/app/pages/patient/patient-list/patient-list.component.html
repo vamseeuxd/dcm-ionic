@@ -1,0 +1,13 @@
+<!--Patient List-->
+<ion-searchbar (ionInput)="getItems($event)"></ion-searchbar>
+<ion-list>
+    <ion-item *ngFor="let item of patients" (click)="patientSelect(item)">
+        <ion-label>
+            <h1>{{ item.name }}</h1>
+            <h3>Mobile : {{item.mobile}}</h3>
+            <h3>Gender : {{item.gender}}</h3>
+            <h3>Age : {{item.age}}</h3>
+        </ion-label>
+    </ion-item>
+</ion-list>
+<!--Patient List-->
