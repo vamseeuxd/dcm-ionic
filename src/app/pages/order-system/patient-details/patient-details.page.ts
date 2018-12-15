@@ -1,4 +1,6 @@
 import {Component} from '@angular/core';
+import {NgForm} from '@angular/forms';
+import {PatientDetails} from '../../patient/PatientDetails';
 
 @Component({
     selector: 'app-home',
@@ -7,65 +9,33 @@ import {Component} from '@angular/core';
 })
 export class PatientDetailsPage {
     items;
+    patientDetails: PatientDetails;
+
+    readonly pageState = {
+        list: '0',
+        edit: '1',
+        details: '2',
+    };
+    currentPageState = this.pageState.list;
 
     constructor() {
-        this.initializeItems();
     }
 
-    initializeItems() {
-        this.items = [
-            'Amsterdam',
-            'Bogota',
-            'Buenos Aires',
-            'Cairo',
-            'Dhaka',
-            'Edinburgh',
-            'Geneva',
-            'Genoa',
-            'Glasglow',
-            'Hanoi',
-            'Hong Kong',
-            'Islamabad',
-            'Istanbul',
-            'Jakarta',
-            'Kiel',
-            'Kyoto',
-            'Le Havre',
-            'Lebanon',
-            'Lhasa',
-            'Lima',
-            'London',
-            'Los Angeles',
-            'Madrid',
-            'Manila',
-            'New York',
-            'Olympia',
-            'Oslo',
-            'Panama City',
-            'Peking',
-            'Philadelphia',
-            'San Francisco',
-            'Seoul',
-            'Taipeh',
-            'Tel Aviv',
-            'Tokio',
-            'Uelzen',
-            'Washington'
-        ];
+    changePatient() {
+        this.currentPageState = this.pageState.list;
     }
 
-    getItems(ev) {
-        // Reset items back to all of the items
-        this.initializeItems();
+    deletePatient() {
+        this.currentPageState = this.pageState.list;
+    }
 
-        // set val to the value of the ev target
-        let val = ev.target.value;
+    showPatientInfo(item: PatientDetails) {
+        this.patientDetails = item;
+        this.currentPageState = this.pageState.details;
+    }
 
-        // if the value is an empty string don't filter the items
-        if (val && val.trim() != '') {
-            this.items = this.items.filter((item) => {
-                return (item.toLowerCase().indexOf(val.toLowerCase()) > -1);
-            });
-        }
+    editPatient(patientDetails) {
+        this.patientDetails = patientDetails;
+        this.currentPageState = this.pageState.edit;
     }
 }

@@ -16,6 +16,7 @@ import {environment} from '../environments/environment';
 import {AngularFireModule} from '@angular/fire';
 import {AngularFireDatabaseModule, AngularFireDatabase} from '@angular/fire/database';
 import {AngularFireAuthModule} from '@angular/fire/auth';
+import {PatientModule} from './pages/patient/patient.module';
 
 
 @NgModule({
@@ -27,12 +28,13 @@ import {AngularFireAuthModule} from '@angular/fire/auth';
         AngularFireDatabaseModule,
         AngularFireAuthModule,
         AppRoutingModule,
+        PatientModule.forRoot(),
         ServiceWorkerModule.register(
             'ngsw-worker.js',
             {
                 enabled: environment.production
             }
-        )
+        ),
     ],
     providers: [
         StatusBar,

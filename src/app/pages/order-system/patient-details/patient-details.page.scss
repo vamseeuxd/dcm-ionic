@@ -1,1 +1,9 @@
+:host {
+  .input-invalid {
+    border-bottom: 1px solid red;
+  }
 
+  .input-valid {
+    border-bottom: 1px solid green;
+  }
+}
