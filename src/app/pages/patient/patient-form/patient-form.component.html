@@ -4,7 +4,7 @@
 
         <ion-item>
             <ion-label position="floating">Name *</ion-label>
-            <ion-input [(ngModel)]="patientDetails.name"
+            <ion-input [(ngModel)]="patientToEdit.name"
                        name="name"
                        required
                        type="text"></ion-input>
@@ -12,7 +12,7 @@
 
         <ion-item>
             <ion-label position="floating">Age *</ion-label>
-            <ion-input [(ngModel)]="patientDetails.age" [max]="100"
+            <ion-input [(ngModel)]="patientToEdit.age" [max]="100"
                        [min]="0"
                        name="age"
                        required
@@ -21,7 +21,7 @@
 
         <ion-item>
             <ion-label position="floating">Gender *</ion-label>
-            <ion-select [(ngModel)]="patientDetails.gender"
+            <ion-select [(ngModel)]="patientToEdit.gender"
                         name="gender"
                         placeholder="Select Gender"
                         required>
@@ -32,7 +32,7 @@
 
         <ion-item>
             <ion-label position="floating">Mobile Number *</ion-label>
-            <ion-input [(ngModel)]="patientDetails.mobile"
+            <ion-input [(ngModel)]="patientToEdit.mobile"
                        [minlength]="10"
                        name="mobile"
                        required
@@ -41,14 +41,14 @@
 
         <ion-item>
             <ion-label position="floating">Email</ion-label>
-            <ion-input [(ngModel)]="patientDetails.email"
+            <ion-input [(ngModel)]="patientToEdit.email"
                        name="email"
                        type="email"></ion-input>
         </ion-item>
 
         <ion-item>
             <ion-label position="floating">Address</ion-label>
-            <ion-textarea [(ngModel)]="patientDetails.address"
+            <ion-textarea [(ngModel)]="patientToEdit.address"
                           name="address"></ion-textarea>
         </ion-item>
 
@@ -59,7 +59,7 @@
         <ion-col size="6">
             <ion-button expand="full"
                         size="default"
-                        (click)="cancelPatientInfo('')"
+                        (click)="cancelPatientInfo()"
                         color="danger">Cancel
             </ion-button>
         </ion-col>
@@ -67,7 +67,7 @@
             <ion-button expand="full"
                         [disabled]="patientFrom.invalid"
                         size="default"
-                        (click)="savePatientInfo('')"
+                        (click)="savePatientInfo()"
                         color="primary">Save
             </ion-button>
         </ion-col>

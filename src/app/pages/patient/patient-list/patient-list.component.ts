@@ -1,6 +1,7 @@
 import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PatientService} from '../patient.service';
 import {PatientDetails} from '../PatientDetails';
+import * as _ from 'lodash';
 
 @Component({
     selector: 'app-patient-list',
@@ -10,17 +11,22 @@ import {PatientDetails} from '../PatientDetails';
 export class PatientListComponent implements OnInit {
 
     public patients: Array<PatientDetails>;
+    public masterPatients: Array<PatientDetails>;
     @Output() select: EventEmitter<PatientDetails> = new EventEmitter<PatientDetails>();
 
     constructor(private patientService: PatientService) {
-        this.initializeItems();
+        // this.initializeItems();
+        this.patientService.patients.subscribe(value => {
+            this.masterPatients = value;
+            this.initializeItems();
+        });
     }
 
     ngOnInit() {
     }
 
     initializeItems() {
-        this.patients = this.patientService.patients;
+        this.patients = _.clone(this.masterPatients); // JSON.parse(JSON.stringify(this.masterPatients));
     }
 
     getItems(ev) {

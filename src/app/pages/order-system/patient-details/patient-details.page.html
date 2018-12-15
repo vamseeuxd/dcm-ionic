@@ -1,6 +1,9 @@
 <ion-header>
     <ion-toolbar>
-        <ion-title>Patient Selection</ion-title>
+        <ion-title *ngIf="currentPageState==pageState.list">Patient Selection</ion-title>
+        <ion-title *ngIf="currentPageState==pageState.details">Selected Patient Details</ion-title>
+        <ion-title *ngIf="currentPageState==pageState.edit">Edit Patient Details</ion-title>
+        <ion-title *ngIf="currentPageState==pageState.add">Add New Patient</ion-title>
     </ion-toolbar>
 </ion-header>
 
@@ -15,9 +18,15 @@
                          (edit)="editPatient($event)"
                          (change)="changePatient($event)"></app-patient-details>
 
-    <app-patient-form *ngIf="currentPageState==pageState.edit"
+    <app-patient-form *ngIf="currentPageState==pageState.edit || currentPageState==pageState.add"
                       [patientDetails]="patientDetails"
-                      (cancel)="showPatientInfo(patientDetails)"
-                      (save)="showPatientInfo(patientDetails)"></app-patient-form>
+                      (cancel)="cancelPatientInfo($event)"
+                      (save)="savePatientInfo($event)"></app-patient-form>
+
+    <ion-fab vertical="bottom" horizontal="end" slot="fixed" *ngIf="currentPageState==pageState.list">
+        <ion-fab-button (click)="addPatient()">
+            <ion-icon name="add"></ion-icon>
+        </ion-fab-button>
+    </ion-fab>
 
 </ion-content>

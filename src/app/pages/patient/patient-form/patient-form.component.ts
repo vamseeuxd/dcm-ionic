@@ -8,10 +8,17 @@ import {PatientDetails} from '../PatientDetails';
 })
 export class PatientFormComponent implements OnInit {
 
-    @Output() save: EventEmitter<string> = new EventEmitter<string>();
-    @Output() cancel: EventEmitter<string> = new EventEmitter<string>();
+    @Output() save: EventEmitter<PatientDetails> = new EventEmitter<PatientDetails>();
+    @Output() cancel: EventEmitter<PatientDetails> = new EventEmitter<PatientDetails>();
+    private patientToEdit: PatientDetails = new PatientDetails();
 
-    @Input() patientDetails: PatientDetails;
+    private _patientDetails: PatientDetails;
+
+    @Input('patientDetails')
+    set patientDetails(_patientDetails: PatientDetails) {
+        this._patientDetails = JSON.parse(JSON.stringify(_patientDetails));
+        this.patientToEdit = JSON.parse(JSON.stringify(_patientDetails));
+    }
 
     constructor() {
     }
@@ -19,11 +26,11 @@ export class PatientFormComponent implements OnInit {
     ngOnInit() {
     }
 
-    savePatientInfo(s: string) {
-        this.save.emit('');
+    savePatientInfo() {
+        this.save.emit(this.patientToEdit);
     }
 
-    cancelPatientInfo(s: string) {
-        this.cancel.emit('');
+    cancelPatientInfo() {
+        this.cancel.emit(this._patientDetails);
     }
 }
