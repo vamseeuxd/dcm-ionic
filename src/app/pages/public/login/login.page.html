@@ -1,0 +1,26 @@
+<ion-content class="login-page" color="primary" no-margin no-padding scrollY="false">
+    <ion-grid>
+        <!--
+            Logo
+        -->
+        <ion-row justify-content-center>
+            <ion-col size-lg="4" size-md="4" size-xl="3" text-center>
+                <img class="logo" src="./assets/images/dcm-lab-logo-transparent.png">
+            </ion-col>
+        </ion-row>
+        <!--**********************-->
+        <!--
+            Google Button
+        -->
+        <ion-row justify-content-center>
+            <ion-col size-lg="4" size-md="4" size-xl="3">
+                <ion-button (click)="signInWithGoogle()"
+                            color="danger"
+                            expand="full">
+                    <ion-icon name="logo-google"></ion-icon>&nbsp;&nbsp;Login with Google
+                </ion-button>
+            </ion-col>
+        </ion-row>
+        <!--**********************-->
+    </ion-grid>
+</ion-content>
