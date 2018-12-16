@@ -48,6 +48,9 @@ export class PatientDetailsPage {
             this.currentPageState = this.pageState.list;
             this.loadingController.dismiss();
         });
+        setTimeout(() => {
+            this.loadingController.dismiss();
+        }, 3000);
     }
 
     showPatientInfo(patientDetails: PatientDetails) {

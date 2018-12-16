@@ -2,6 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core';
 import {PatientService} from '../patient.service';
 import {PatientDetails} from '../PatientDetails';
 import * as _ from 'lodash';
+import {AlertController} from '@ionic/angular';
 
 @Component({
     selector: 'app-patient-list',
@@ -13,8 +14,13 @@ export class PatientListComponent implements OnInit {
     public patients: Array<PatientDetails>;
     public masterPatients: Array<PatientDetails>;
     @Output() select: EventEmitter<PatientDetails> = new EventEmitter<PatientDetails>();
+    @Output() delete: EventEmitter<PatientDetails> = new EventEmitter<PatientDetails>();
+    @Output() edit: EventEmitter<PatientDetails> = new EventEmitter<PatientDetails>();
 
-    constructor(private patientService: PatientService) {
+    constructor(
+        private patientService: PatientService,
+        public alertController: AlertController
+    ) {
         // this.initializeItems();
         this.patientService.patients.subscribe(value => {
             this.masterPatients = value;
@@ -43,6 +49,34 @@ export class PatientListComponent implements OnInit {
     patientSelect(item: PatientDetails) {
         this.getItems({target: {value: ''}});
         this.select.emit(item);
+    }
+
+    async deleteConfirm(patientDetails: PatientDetails) {
+        const alert = await this.alertController.create({
+            header: 'Delete Confirmation',
+            message: 'Are you sure! do you want to delete?',
+            buttons: [
+                {
+                    text: 'NO',
+                    role: 'cancel',
+                    cssClass: 'secondary',
+                    handler: (blah) => {
+                        console.log('Confirm Cancel: blah');
+                    }
+                }, {
+                    text: 'Yes',
+                    handler: () => {
+                        this.delete.emit(patientDetails);
+                    }
+                }
+            ]
+        });
+
+        await alert.present();
+    }
+
+    editPatient(patientDetails: PatientDetails) {
+        this.edit.emit(patientDetails);
     }
 
 }

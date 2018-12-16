@@ -1,5 +1,6 @@
 <ion-header>
     <ion-toolbar>
+        <ion-menu-button></ion-menu-button>
         <ion-title *ngIf="currentPageState==pageState.list">Patient Selection</ion-title>
         <ion-title *ngIf="currentPageState==pageState.details">Selected Patient Details</ion-title>
         <ion-title *ngIf="currentPageState==pageState.edit">Edit Patient Details</ion-title>
@@ -10,6 +11,8 @@
 <ion-content padding>
 
     <app-patient-list *ngIf="currentPageState==pageState.list"
+                      (delete)="deletePatient($event)"
+                      (edit)="editPatient($event)"
                       (select)="showPatientInfo($event)"></app-patient-list>
 
     <app-patient-details *ngIf="currentPageState==pageState.details"

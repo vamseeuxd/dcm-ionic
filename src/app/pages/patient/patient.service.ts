@@ -23,9 +23,9 @@ export class PatientService {
                 changes.map(c => ({key: c.payload.key.replace(/"/g, ''), ...c.payload.val()}))
             )
         );
-        this.patients.subscribe(value => {
+        /*this.patients.subscribe(value => {
             console.log(value);
-        });
+        });*/
     }
 
     addPatient(newPatient: PatientDetails) {
@@ -40,7 +40,6 @@ export class PatientService {
     }
 
     deletePatient(key: string) {
-        debugger;
         return this.patientsRef.remove(key);
     }
 
